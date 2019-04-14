@@ -12,7 +12,8 @@ export default function (state = constants.INITIAL_STATE, action: action): Auth 
     case constants.tokenFinish:
       return {
         ...state,
-        token: action.payload
+        token: action.payload,
+        isLoged: true
       }
     case constants.tokenError:
       return constants.INITIAL_STATE;

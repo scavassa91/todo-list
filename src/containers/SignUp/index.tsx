@@ -6,11 +6,19 @@ import SignUp from './SignUp';
 import { login } from '../Auth/AuthAction';
 
 const mapStateToProps = (state: ReduxState) => ({
-  auth: state.auth,
+  isLoged: state.auth.isLoged,
+  isLoading: state.auth.isLoginRunning,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
   onSignUp: () => dispatch(login())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+const merge = (state: any, dispatch: any, ownProps: any) => ({
+  ...state,
+  ...dispatch,
+  ...ownProps,
+  onLoged: () => ownProps.history.push('/todos')
+});
+
+export default connect(mapStateToProps, mapDispatchToProps, merge)(SignUp);

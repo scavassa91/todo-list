@@ -4,6 +4,7 @@ import './App.css';
 import SignUp from './containers/SignUp';
 import ListTasks from './containers/ListTasks/ListTasks';
 import Header from './components/Header/Header';
+import PrivateRoute from './containers/PrivateRoute';
 
 class App extends Component {
   public render(): JSX.Element {
@@ -12,7 +13,7 @@ class App extends Component {
         <Header/>
         <Router>
           <Route exact path="/" component={SignUp} />
-          <Route path="/todos" component={ListTasks} />
+          <PrivateRoute path="/todos" component={ListTasks} />
         </Router>
       </div>
     );

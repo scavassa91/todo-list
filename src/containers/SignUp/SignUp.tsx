@@ -1,23 +1,34 @@
 import React, { Component } from 'react';
 import './SignUp.css';
 import { Button } from '@material-ui/core';
-import { Auth } from '../../interfaces/Auth';
+import Spinner from '../../components/Spinner/Spinner';
 
 interface MyProps {
-  auth: Auth;
+  isLoged: boolean;
+  isLoading: boolean;
   onSignUp: Function;
+  onLoged: Function;
 };
 
 class SignUp extends Component<MyProps> {
+  componentWillUpdate() {
+    const { isLoged, onLoged } = this.props;
+    console.log(isLoged);
+    if (isLoged) {
+      onLoged();
+    }
+  }
+
   render(): JSX.Element {
-    const { onSignUp } = this.props;
-    console.log(this.props);
+    const { onSignUp, isLoading } = this.props;
     return (
       <div className="sign-up">
         <Button
           onClick={() => onSignUp()}
           variant="contained"
-          color="primary">Sign Up</Button>
+          color="primary">Sign Up
+        </Button>
+        <Spinner isHide={!isLoading} />
       </div>
     );
   }

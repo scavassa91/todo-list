@@ -60,7 +60,7 @@ export function logoutRunning(isLogoutRunning: boolean): AuthLogouRunning {
 
 export function logoutFinish(): AuthLogouFinish {
   return {
-    type: constants.logoutLoading
+    type: constants.logoutFinish
   };
 };
 

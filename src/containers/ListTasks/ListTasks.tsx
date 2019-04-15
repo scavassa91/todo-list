@@ -11,11 +11,7 @@ class ListTasks extends Component<MyProps> {
     const { onLogout } = this.props;
     return (
       <div className="list-tasks">
-        <Button
-          onClick={() => onLogout()}
-          variant="contained"
-          color="primary">Logout
-        </Button>
+        ListTasks works
       </div>
     );
   }

@@ -13,7 +13,6 @@ interface MyProps {
 class SignUp extends Component<MyProps> {
   componentWillUpdate() {
     const { isLoged, onLoged } = this.props;
-    console.log(isLoged);
     if (isLoged) {
       onLoged();
     }

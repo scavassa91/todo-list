@@ -11,6 +11,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 httpInterceptor.requestInterceptor();
+httpInterceptor.responseInterceptor(store);
 
 ReactDOM.render(
   <Provider store={store}>

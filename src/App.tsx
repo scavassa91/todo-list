@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { createBrowserHistory, History }  from 'history';
+import { Router, Route } from 'react-router-dom';
 import './App.css';
 import SignUp from './containers/SignUp';
 import ListTasks from './containers/ListTasks';
-import Header from './components/Header/Header';
+import Header from './containers/Header';
 import PrivateRoute from './containers/PrivateRoute';
+
+const history: History = createBrowserHistory();
 
 class App extends Component {
   public render(): JSX.Element {
     return (
       <div className="App">
-        <Header/>
-        <Router>
+        <Header history={history}/>
+        <Router history={history}>
           <Route exact path="/" component={SignUp} />
           <PrivateRoute path="/todos" component={ListTasks} />
         </Router>

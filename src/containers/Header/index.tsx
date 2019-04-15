@@ -1,17 +1,14 @@
 import { connect } from 'react-redux';
 import { ReduxState } from '../../interfaces/ReduxState';
-
-import SignUp from './SignUp';
-
-import { login } from '../Auth/AuthAction';
+import { logout } from '../Auth/AuthAction';
+import Header from './Header';
 
 const mapStateToProps = (state: ReduxState) => ({
   isLoged: state.auth.isLoged,
-  isLoading: state.auth.isLoginRunning,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  onSignUp: () => dispatch(login())
+  onLogout: () => dispatch(logout())
 });
 
 const merge = (state: any, dispatch: any, ownProps: any) => {
@@ -19,8 +16,10 @@ const merge = (state: any, dispatch: any, ownProps: any) => {
     ...state,
     ...dispatch,
     ...ownProps,
-    onLoged: () => ownProps.history.push('/todos')
+    goHome: () => ownProps.history.push('/')
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps, merge)(SignUp);
+export default connect(
+  mapStateToProps, mapDispatchToProps, merge
+)(Header);

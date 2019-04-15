@@ -1,6 +1,9 @@
 .grow {
   flex-grow: 1;
 }
+.space {
+  padding-left: 48px;
+}
 .menuButton {
   margin-left: -12px;
   margin-right: 20px;

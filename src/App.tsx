@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import SignUp from './containers/SignUp';
-import ListTasks from './containers/ListTasks/ListTasks';
+import ListTasks from './containers/ListTasks';
 import Header from './components/Header/Header';
 import PrivateRoute from './containers/PrivateRoute';
 

@@ -6,9 +6,6 @@ export const getToken = (): AxiosPromise => {
     baseURL: backendUrl,
     url: '/api/session',
     method: 'POST',
-    data: JSON.stringify({
-      "errorRate": 50
-    }),
     timeout: 10000,
   });
 };
@@ -18,6 +15,15 @@ export const logout = (): AxiosPromise => {
     baseURL: backendUrl,
     url: '/api/session',
     method: 'DELETE',
+    timeout: 10000,
+  });
+};
+
+export const refreshToken = (): AxiosPromise => {
+  return axios({
+    baseURL: backendUrl,
+    url: '/api/session',
+    method: 'PATCH',
     timeout: 10000,
   });
 };

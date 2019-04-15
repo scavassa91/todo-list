@@ -1,12 +1,20 @@
 import * as constants from './constants';
-import { getToken, logout as logoutApi } from './AuthApi';
+import {
+  getToken,
+  logout as logoutApi,
+  refreshToken as refreshTokenApi
+} from './AuthApi';
 import {
   AuthLoginFlow,
   AuthLoginRunning,
   AuthLoginError,
   AuthLogoutFlow,
   AuthLogouRunning,
-  AuthLoginFinish
+  AuthLoginFinish,
+  AuthLogouFinish,
+  AuthRefreshTokenFlow,
+  AuthRefreshTokenFinish,
+  AuthRefreshTokenError
 } from "../../interfaces/Auth";
 
 export function login(): AuthLoginFlow {
@@ -36,7 +44,7 @@ export function tokenError(): AuthLoginError {
   };
 };
 
-export function logout(token: string): AuthLogoutFlow {
+export function logout(): AuthLogoutFlow {
   return {
     type: constants.logoutFlow,
     api: logoutApi
@@ -47,5 +55,31 @@ export function logoutRunning(isLogoutRunning: boolean): AuthLogouRunning {
   return {
     type: constants.logoutLoading,
     payload: isLogoutRunning
+  };
+};
+
+export function logoutFinish(): AuthLogouFinish {
+  return {
+    type: constants.logoutLoading
+  };
+};
+
+export function refreshToken(): AuthRefreshTokenFlow {
+  return {
+    type: constants.refreshTokenFlow,
+    api: refreshTokenApi
+  };
+};
+
+export function refreshTokenFinish(token: string): AuthRefreshTokenFinish {
+  return {
+    type: constants.refreshTokenFinish,
+    payload: token 
+  };
+};
+
+export function refreshTokenError(): AuthRefreshTokenError {
+  return {
+    type: constants.refreshTokenError
   };
 };

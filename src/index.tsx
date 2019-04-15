@@ -4,9 +4,13 @@ import ReactDOM from 'react-dom';
 import store from './store/mainReducer';
 import { Provider } from 'react-redux';
 
+import httpInterceptor from './interceptor/http-interceptor';
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+httpInterceptor.requestInterceptor();
 
 ReactDOM.render(
   <Provider store={store}>

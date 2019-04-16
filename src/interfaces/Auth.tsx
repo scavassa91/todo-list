@@ -6,8 +6,6 @@ import {
   logoutFlow,
   logoutLoading,
   logoutFinish,
-  refreshTokenFlow,
-  refreshTokenFinish,
   refreshTokenError
 } from '../containers/Auth/constants';
 
@@ -40,6 +38,7 @@ export interface AuthLoginError {
 export interface AuthLogoutFlow {
   type: typeof logoutFlow;
   api: any;
+  refresh: any;
 }
 
 export interface AuthLogouRunning {
@@ -49,16 +48,6 @@ export interface AuthLogouRunning {
 
 export interface AuthLogouFinish {
   type: typeof logoutFinish;
-}
-
-export interface AuthRefreshTokenFlow {
-  type: typeof refreshTokenFlow;
-  api: any;
-}
-
-export interface AuthRefreshTokenFinish {
-  type: typeof refreshTokenFinish;
-  payload: string;
 }
 
 export interface AuthRefreshTokenError {

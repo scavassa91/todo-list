@@ -24,12 +24,6 @@ export default function (state = constants.INITIAL_STATE, action: action): Auth 
         ...state,
         isLogoutRunning: action.payload
       };
-    case constants.refreshTokenFinish:
-      return {
-        ...state,
-        token: action.payload,
-        isLoged: true
-      };
     default:
       return state;
   }

@@ -79,7 +79,6 @@ class Header extends Component<MyProps, MyState> {
   }
 
   render(): JSX.Element {
-    console.log(this.props);
     const { isLoged } = this.props;
     return (
     <AppBar position="static">

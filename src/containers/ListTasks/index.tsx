@@ -8,7 +8,7 @@ const mapStateToProps = (state: ReduxState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  onLogout: () => dispatch(logout()),
+  onLogout: () => dispatch(logout())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListTasks);

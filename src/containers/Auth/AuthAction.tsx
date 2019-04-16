@@ -12,8 +12,6 @@ import {
   AuthLogouRunning,
   AuthLoginFinish,
   AuthLogouFinish,
-  AuthRefreshTokenFlow,
-  AuthRefreshTokenFinish,
   AuthRefreshTokenError
 } from "../../interfaces/Auth";
 
@@ -47,7 +45,8 @@ export function tokenError(): AuthLoginError {
 export function logout(): AuthLogoutFlow {
   return {
     type: constants.logoutFlow,
-    api: logoutApi
+    api: logoutApi,
+    refresh: refreshTokenApi
   };
 };
 
@@ -61,20 +60,6 @@ export function logoutRunning(isLogoutRunning: boolean): AuthLogouRunning {
 export function logoutFinish(): AuthLogouFinish {
   return {
     type: constants.logoutFinish
-  };
-};
-
-export function refreshToken(): AuthRefreshTokenFlow {
-  return {
-    type: constants.refreshTokenFlow,
-    api: refreshTokenApi
-  };
-};
-
-export function refreshTokenFinish(token: string): AuthRefreshTokenFinish {
-  return {
-    type: constants.refreshTokenFinish,
-    payload: token 
   };
 };
 

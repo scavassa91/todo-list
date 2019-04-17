@@ -2,16 +2,28 @@ import { connect } from 'react-redux';
 import { ReduxState } from '../../interfaces/ReduxState';
 import { logout } from '../Auth/AuthAction';
 import Header from './Header';
+import { Dispatch } from 'redux';
 
-const mapStateToProps = (state: ReduxState) => ({
+interface HeaderDispatchInterface {
+  onLogout: () => void;
+}
+
+interface HeaderStateProps {
+  isLoged: boolean;
+}
+
+const mapStateToProps = (state: ReduxState): HeaderStateProps => ({
   isLoged: state.auth.isLoged,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch): HeaderDispatchInterface => ({
   onLogout: () => dispatch(logout())
 });
 
-const merge = (state: any, dispatch: any, ownProps: any) => {
+const merge = (
+  state: HeaderStateProps,
+  dispatch: HeaderDispatchInterface,
+  ownProps: any) => {
   return {
     ...state,
     ...dispatch,

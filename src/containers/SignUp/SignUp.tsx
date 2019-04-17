@@ -18,7 +18,7 @@ class SignUp extends Component<MyProps> {
     }
   }
 
-  render(): JSX.Element {
+  public render(): JSX.Element {
     const { onSignUp, isLoading } = this.props;
     return (
       <div className="sign-up">

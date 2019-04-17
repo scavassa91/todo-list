@@ -1,0 +1,20 @@
+.list-tasks > .todo-card {
+  border-radius: 0;
+  padding: .5rem 24px;
+  text-align: left;
+}
+
+.list-tasks > .done {
+  background-color: #ddd;
+  text-decoration: line-through;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-content > .todo-title {
+  flex: 1;
+}

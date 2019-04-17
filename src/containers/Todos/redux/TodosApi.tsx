@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosPromise } from 'axios';
 import { backendUrl } from '../../../store/Utils';
 
-export const getAllToDos = () => {
+export const getAllToDos = (): AxiosPromise => {
   return axios({
     baseURL: backendUrl,
     url: '/api/todos',

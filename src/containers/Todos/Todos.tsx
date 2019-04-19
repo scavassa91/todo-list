@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Todo } from '../../interfaces/Todo';
-import { Card, Typography, IconButton, Menu, MenuItem } from '@material-ui/core';
+import { Card, Typography, Fab } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 import './Todos.css';
 import TodoMenu from './components/TodoMenu';
 import Spinner from '../../components/Spinner/Spinner';
@@ -11,6 +12,7 @@ interface MyProps {
   todos: Todo[];
   getAllTodos: Function;
   showTodoDetails: Function;
+  onAddTodo: Function;
 }
 class Todos extends Component<MyProps> {
 
@@ -40,11 +42,18 @@ class Todos extends Component<MyProps> {
   }
 
   render(): JSX.Element {
-    const { isLoading } = this.props;
+    const { isLoading, onAddTodo } = this.props;
     return (
       <div className="list-tasks">
         <Spinner isHide={!isLoading} />
         {this.renderTodoCard()}
+        <Fab
+          onClick={() => onAddTodo()}
+          className="add-icon"
+          color="primary"
+          aria-label="Add">
+          <AddIcon />
+        </Fab>
       </div>
     );
   }

@@ -19,6 +19,7 @@ class App extends Component {
           <Route exact path="/" component={SignUp} />
           <PrivateRoute exact={true} path="/todos" component={Todos} />
           <PrivateRoute exact={true} path="/todos/:id" component={TodoDetails} />
+          <PrivateRoute exact={true} path="/todo" component={TodoDetails} />
         </Router>
       </div>
     );

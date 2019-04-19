@@ -136,7 +136,7 @@ class TodoDetails extends Component<MyProps, MyState> {
               (event: React.ChangeEvent<HTMLInputElement>) =>
                 this.onTodoUrgencyChange(event)
             }
-            defaultValue={urgencyText}
+            defaultValue={urgencyText.toString()}
           />
           {this.renderRadioButton()}
           <div className="button-control">

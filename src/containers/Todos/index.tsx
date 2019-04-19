@@ -30,7 +30,8 @@ const merge = (
   ...state,
   ...dispatch,
   ...ownProps,
-  showTodoDetails: (id: number) => ownProps.history.push(`/todos/${id}`)
+  showTodoDetails: (id: number) => ownProps.history.push(`/todos/${id}`),
+  onAddTodo: () => ownProps.history.push(`/todo`)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps ,merge)(Todos);

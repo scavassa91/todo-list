@@ -23,3 +23,9 @@
 .card-content > .todo-title {
   flex: 1;
 }
+
+.list-tasks > .add-icon {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}

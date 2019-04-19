@@ -1,0 +1,22 @@
+.todo-details {
+  flex: 1;
+  position: relative;
+}
+
+.todo-details > form {
+  padding: 1rem;
+  text-align: left;
+}
+
+.todo-details > form >  .field {
+  margin-bottom: 1rem;
+}
+
+.radio-control {
+  width: 100%;
+}
+
+.button-control {
+  display: flex;
+  justify-content: space-evenly;
+}

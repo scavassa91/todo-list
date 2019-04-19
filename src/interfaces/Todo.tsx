@@ -6,10 +6,10 @@ import {
 } from "../containers/Todos/redux/constants";
 
 export interface Todo {
-  id: string;
+  id?: string;
   text: string;
-  created: string;
-  updated: string;
+  created?: string;
+  updated?: string;
   isCompleted: boolean;
   urgency: number;
 }

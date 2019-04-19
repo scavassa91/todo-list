@@ -5,6 +5,7 @@ interface MyProps {
   path: string;
   component: Function;
   isLoged: boolean;
+  exact: boolean;
 }
 
 class PrivateRoute extends Component<MyProps> {
@@ -15,7 +16,7 @@ class PrivateRoute extends Component<MyProps> {
       <Route {...rest} render={() => <Redirect to="/" />}/>);
 
     const authSuccess = (
-      <Route {...rest} render={props => <Component {...props} />}/>);
+      <Route exact={this.props.exact} {...rest} render={props => <Component {...props} />}/>);
     return isLoged ? authSuccess : noAuth;
   }
 }

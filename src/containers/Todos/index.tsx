@@ -3,7 +3,7 @@ import Todos from './Todos';
 import { listTodosFlow } from '../Todos/redux/TodosActions';
 import { ReduxState } from '../../interfaces/ReduxState';
 import { Dispatch } from 'redux';
-import { ITodo, Todo } from '../../interfaces/Todo';
+import { Todo } from '../../interfaces/Todo';
 
 interface TodosDispatchInterface {
   getAllTodos: () => void;
@@ -23,4 +23,14 @@ const mapDispatchToProps = (dispatch: Dispatch): TodosDispatchInterface => ({
   getAllTodos: () => dispatch(listTodosFlow())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Todos);
+const merge = (
+  state: TodosStateProps,
+  dispatch: TodosDispatchInterface,
+  ownProps: any) => ({
+  ...state,
+  ...dispatch,
+  ...ownProps,
+  showTodoDetails: (id: number) => ownProps.history.push(`/todos/${id}`)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps ,merge)(Todos);

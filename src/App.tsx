@@ -6,6 +6,7 @@ import SignUp from './containers/SignUp';
 import Todos from './containers/Todos';
 import Header from './containers/Header';
 import PrivateRoute from './containers/PrivateRoute';
+import TodoDetails from './containers/TodoDetails';
 
 const history: History = createBrowserHistory();
 
@@ -13,10 +14,11 @@ class App extends Component {
   public render(): JSX.Element {
     return (
       <div className="App">
-        <Header history={history}/>
+        <Header history={history} />
         <Router history={history}>
           <Route exact path="/" component={SignUp} />
-          <PrivateRoute path="/todos" component={Todos} />
+          <PrivateRoute exact={true} path="/todos" component={Todos} />
+          <PrivateRoute exact={true} path="/todos/:id" component={TodoDetails} />
         </Router>
       </div>
     );

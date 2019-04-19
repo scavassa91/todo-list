@@ -3,12 +3,14 @@ import { Todo } from '../../interfaces/Todo';
 import { Card, Typography, IconButton, Menu, MenuItem } from '@material-ui/core';
 import './Todos.css';
 import TodoMenu from './components/TodoMenu';
+import Spinner from '../../components/Spinner/Spinner';
 
 
 interface MyProps {
   isLoading: boolean;
   todos: Todo[];
   getAllTodos: Function;
+  showTodoDetails: Function;
 }
 class Todos extends Component<MyProps> {
 
@@ -18,7 +20,7 @@ class Todos extends Component<MyProps> {
   }
 
   renderTodoCard(): JSX.Element[] {
-    const { todos } = this.props;
+    const { todos, showTodoDetails } = this.props;
     return todos.sort((a, b) => b.urgency - a.urgency).map((todo: Todo) => {
       return (
         <Card
@@ -28,7 +30,9 @@ class Todos extends Component<MyProps> {
             <Typography
               className="todo-title"
               variant="subtitle2">{todo.text}</Typography>
-            <TodoMenu todo={todo} />
+            <TodoMenu
+              todo={todo}
+              onDetails={() => showTodoDetails(todo.id)} />
           </div>
         </Card>
       );
@@ -36,9 +40,10 @@ class Todos extends Component<MyProps> {
   }
 
   render(): JSX.Element {
-    console.log(this.props.todos);
+    const { isLoading } = this.props;
     return (
       <div className="list-tasks">
+        <Spinner isHide={!isLoading} />
         {this.renderTodoCard()}
       </div>
     );

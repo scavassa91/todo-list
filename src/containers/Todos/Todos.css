@@ -1,3 +1,8 @@
+.list-tasks {
+  flex: 1;
+  position: relative;
+}
+
 .list-tasks > .todo-card {
   border-radius: 0;
   padding: .5rem 24px;

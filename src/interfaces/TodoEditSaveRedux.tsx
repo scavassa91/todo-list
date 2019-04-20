@@ -27,3 +27,7 @@ export interface TodoEditSaveStatus {
   type: string;
   payload: number;
 };
+
+export interface TodoSaveCleanCleanStatus {
+  type: string
+}

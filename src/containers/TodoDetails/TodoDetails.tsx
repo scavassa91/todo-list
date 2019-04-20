@@ -18,6 +18,7 @@ interface MyProps {
   onSave: Function;
   isLoading: boolean;
   status: number;
+  clearStatus: Function;
 }
 
 interface MyState {
@@ -36,6 +37,11 @@ class TodoDetails extends Component<MyProps, MyState> {
       urgencyText: 1,
       isDone: 'todo'
     };
+  }
+
+  componentWillUnmount() {
+    const { clearStatus } = this.props;
+    clearStatus();
   }
 
   componentWillUpdate() {

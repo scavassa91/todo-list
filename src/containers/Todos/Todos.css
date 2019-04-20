@@ -1,6 +1,8 @@
 .list-tasks {
   flex: 1;
   position: relative;
+  overflow: auto;
+  padding-bottom: 80px;
 }
 
 .list-tasks > .todo-card {
@@ -25,7 +27,7 @@
 }
 
 .list-tasks > .add-icon {
-  position: absolute;
+  position: fixed;
   bottom: 1rem;
-  right: 1rem;
+  right: 2rem;
 }

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import TodoDetails from './TodoDetails';
 import { ReduxState } from '../../interfaces/ReduxState';
 import { Todo, ITodo } from '../../interfaces/Todo';
-import { saveTodoFlow, editTodoFlow } from './redux/TodoActions';
+import { saveTodoFlow, editTodoFlow, saveTodoClean, editTodoClean } from './redux/TodoActions';
 import { Dispatch } from 'redux';
 
 interface TodosDetailsStateProps {
@@ -14,6 +14,7 @@ interface TodosDetailsStateProps {
 interface TodosDetailsDispatchProps {
   _onSave: (todo: Todo) => void;
   _onEdit: (id: number, todo: Todo) => void;
+  clearStatus: () => void;
 }
 
 const mapStateToProps = (state: ReduxState): TodosDetailsStateProps => ({
@@ -24,7 +25,11 @@ const mapStateToProps = (state: ReduxState): TodosDetailsStateProps => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): TodosDetailsDispatchProps => ({
   _onSave: (todo: Todo) => dispatch(saveTodoFlow(todo)),
-  _onEdit: (id: number, todo: Todo) => dispatch(editTodoFlow(id, todo))
+  _onEdit: (id: number, todo: Todo) => dispatch(editTodoFlow(id, todo)),
+  clearStatus: () => {
+    dispatch(saveTodoClean()),
+    dispatch(editTodoClean())
+  }
 });
 
 const merge = (

@@ -4,7 +4,8 @@ import {
   TodoSaveFlow,
   TodoEditFlow,
   TodoEditSaveRunning,
-  TodoEditSaveStatus
+  TodoEditSaveStatus,
+  TodoSaveCleanCleanStatus
 } from '../../../interfaces/TodoEditSaveRedux';
 import { Todo } from '../../../interfaces/Todo';
 
@@ -50,5 +51,17 @@ export function editTodoFinish (status: number): TodoEditSaveStatus {
   return {
     type: constants.editTodoFinish,
     payload: status
+  };
+};
+
+export function saveTodoClean (): TodoSaveCleanCleanStatus {
+  return {
+    type: constants.saveTodoClean
+  };
+};
+
+export function editTodoClean (): TodoSaveCleanCleanStatus {
+  return {
+    type: constants.editTodoClean
   };
 };

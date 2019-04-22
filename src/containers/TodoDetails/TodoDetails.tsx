@@ -41,7 +41,7 @@ class TodoDetails extends Component<MyProps, MyState> {
       todoText: '',
       urgencyText: 1,
       isDone: 'todo',
-      snackOpen: true,
+      snackOpen: false,
       message: '',
     };
   }

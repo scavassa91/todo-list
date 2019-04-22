@@ -9,6 +9,7 @@ interface MyState {
 interface MyProps {
   todo: Todo;
   onDetails: Function;
+  onDelete: Function;
 }
 
 export default class TodoMenu extends Component <MyProps, MyState> {
@@ -31,7 +32,7 @@ export default class TodoMenu extends Component <MyProps, MyState> {
 
   render(): JSX.Element {
     const { anchorEl } = this.state;
-    const { todo, onDetails } = this.props;
+    const { todo, onDetails, onDelete } = this.props;
     return (
       <Fragment>
         <IconButton
@@ -48,9 +49,8 @@ export default class TodoMenu extends Component <MyProps, MyState> {
           open={Boolean(anchorEl)}
           onClose={() => this.handleClose()}
         >
-          <MenuItem>{todo.isCompleted ? 'Uncompleted' : 'Compled'}</MenuItem>
           <MenuItem onClick={() => onDetails()}>Edit</MenuItem>
-          <MenuItem>Delete</MenuItem>
+          <MenuItem onClick={() => onDelete()}>Delete</MenuItem>
         </Menu>
       </Fragment>
     );

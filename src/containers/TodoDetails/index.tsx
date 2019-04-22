@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import TodoDetails from './TodoDetails';
 import { ReduxState } from '../../interfaces/ReduxState';
-import { Todo, ITodo } from '../../interfaces/Todo';
+import { Todo, ITodo, TodosState } from '../../interfaces/Todo';
 import { saveTodoFlow, editTodoFlow, saveTodoClean, editTodoClean } from './redux/TodoActions';
 import { Dispatch } from 'redux';
 
@@ -18,8 +18,8 @@ interface TodosDetailsDispatchProps {
 }
 
 const mapStateToProps = (state: ReduxState): TodosDetailsStateProps => ({
-  isLoading: state.todo.isRunning,
-  status: state.todo.status,
+  isLoading: state.todos.isRunning,
+  status: state.todos.saveEditstatus,
   todos: state.todos.todos
 });
 

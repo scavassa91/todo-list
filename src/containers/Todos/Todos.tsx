@@ -13,6 +13,7 @@ interface MyProps {
   getAllTodos: Function;
   showTodoDetails: Function;
   onAddTodo: Function;
+  deleteTodo: Function;
 }
 class Todos extends Component<MyProps> {
 
@@ -22,7 +23,7 @@ class Todos extends Component<MyProps> {
   }
 
   renderTodoCard(): JSX.Element[] {
-    const { todos, showTodoDetails } = this.props;
+    const { todos, showTodoDetails, deleteTodo, getAllTodos } = this.props;
     return todos.sort((a, b) => b.urgency - a.urgency).map((todo: Todo) => {
       return (
         <Card
@@ -34,7 +35,8 @@ class Todos extends Component<MyProps> {
               variant="subtitle2">{todo.text}</Typography>
             <TodoMenu
               todo={todo}
-              onDetails={() => showTodoDetails(todo.id)} />
+              onDetails={() => showTodoDetails(todo.id)}
+              onDelete={() => deleteTodo(todo.id)} />
           </div>
         </Card>
       );

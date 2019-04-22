@@ -1,9 +1,4 @@
-import { Todo } from "./Todo";
-
-export interface TodoEditSaveState {
-  isRunning: boolean;
-  status: number;
-};
+import { Todo, ITodo } from "./Todo";
 
 export interface TodoSaveFlow {
   type: string;

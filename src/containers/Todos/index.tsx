@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import Todos from './Todos';
-import { listTodosFlow } from '../Todos/redux/TodosActions';
 import { ReduxState } from '../../interfaces/ReduxState';
 import { Dispatch } from 'redux';
 import { Todo } from '../../interfaces/Todo';
+import { deleteTodoFlow, getTodosFlow } from '../TodoDetails/redux/TodoActions';
 
 interface TodosDispatchInterface {
   getAllTodos: () => void;
+  deleteTodo: (id: string) => void;
 }
 
 interface TodosStateProps {
@@ -20,7 +21,8 @@ const mapStateToProps = (state: ReduxState): TodosStateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): TodosDispatchInterface => ({
-  getAllTodos: () => dispatch(listTodosFlow())
+  getAllTodos: () => dispatch(getTodosFlow()),
+  deleteTodo: (id: string) => dispatch(deleteTodoFlow(id))
 });
 
 const merge = (

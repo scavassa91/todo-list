@@ -12,7 +12,8 @@ import { Todo, ITodo } from '../../../interfaces/Todo';
 import {
   GetTodosFlow,
   GetTodosRunning,
-  GetTodosFinish
+  GetTodosFinish,
+  GetTodosClean
 } from '../../../interfaces/GetTodos';
 import {
   DeleteTodoFinish,
@@ -41,6 +42,12 @@ export function getTodosFinish(status: number, todos: ITodo<Todo>): GetTodosFini
       status,
       todos
     }
+  };
+};
+
+export function getTodosClean(): GetTodosClean {
+  return {
+    type: constants.getTodosClean,
   };
 };
 

@@ -14,7 +14,7 @@ interface TodosDetailsStateProps {
 interface TodosDetailsDispatchProps {
   _onSave: (todo: Todo) => void;
   _onEdit: (id: number, todo: Todo) => void;
-  clearStatus: () => void;
+  cleanMessage: () => void;
 }
 
 const mapStateToProps = (state: ReduxState): TodosDetailsStateProps => ({
@@ -26,7 +26,7 @@ const mapStateToProps = (state: ReduxState): TodosDetailsStateProps => ({
 const mapDispatchToProps = (dispatch: Dispatch): TodosDetailsDispatchProps => ({
   _onSave: (todo: Todo) => dispatch(saveTodoFlow(todo)),
   _onEdit: (id: number, todo: Todo) => dispatch(editTodoFlow(id, todo)),
-  clearStatus: () => {
+  cleanMessage: () => {
     dispatch(saveTodoClean()),
     dispatch(editTodoClean())
   }

@@ -18,3 +18,7 @@ export interface GetTodosFinish {
     status: number;
   };
 };
+
+export interface GetTodosClean {
+  type: typeof constants.getTodosClean;
+};

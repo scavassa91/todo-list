@@ -37,7 +37,7 @@ export function* getTodos(action: GetTodosFlow) {
       yield put(getTodosFinish(resp.status, {}));
     }
   } catch(e) {
-    yield put(getTodosFinish(e.status, {}));
+    yield put(getTodosFinish(500, {}));
   } finally {
     yield put(getTodosRunning(false));
   }
@@ -49,7 +49,7 @@ export function* saveTodo(action: TodoSaveFlow) {
     const resp: AxiosResponse = yield call(action.api, action.data);
     yield put(saveTodoFinish(resp.status));
   } catch(e) {
-    yield put(saveTodoFinish(e.status));
+    yield put(saveTodoFinish(500));
   } finally {
     yield put(saveTodoRunning(false));
   }
@@ -61,7 +61,7 @@ export function* editTodo(action: TodoEditFlow) {
     const resp: AxiosResponse = yield call(action.api, action.id, action.data);
     yield put(editTodoFinish(resp.status));
   } catch(e) {
-    yield put(editTodoFinish(e.status));
+    yield put(editTodoFinish(500));
   } finally {
     yield put(editTodoRunning(false));
   }

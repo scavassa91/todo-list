@@ -31,10 +31,21 @@ export default function (state = constants.INITIAL_STATE, action: action): Todos
         todos: action.payload.todos
       };
     case constants.getTodosClean:
+      return {
+        ...state,
+        getStatus: 0
+      };
     case constants.saveTodoClean:
     case constants.editTodoClean:
+      return {
+        ...state,
+        saveEditstatus: 0
+      };
     case constants.deleteTodoClean:
-      return constants.INITIAL_STATE;
+      return {
+        ...state,
+        deleteStatus: 0
+      };
     default:
       return state;
   }

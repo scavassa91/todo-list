@@ -8,9 +8,12 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-  Button
+  Button,
+  Snackbar,
+  IconButton
 } from '@material-ui/core';
 import Spinner from '../../components/Spinner/Spinner';
+import CloseIcon from '@material-ui/icons/Close';
 
 interface MyProps {
   todo?: Todo;
@@ -18,13 +21,15 @@ interface MyProps {
   onSave: Function;
   isLoading: boolean;
   status: number;
-  clearStatus: Function;
+  cleanMessage: Function;
 }
 
 interface MyState {
   todoText: string;
   urgencyText: number;
   isDone: string;
+  snackOpen: boolean;
+  message: string;
 }
 
 class TodoDetails extends Component<MyProps, MyState> {
@@ -35,25 +40,34 @@ class TodoDetails extends Component<MyProps, MyState> {
     this.state = {
       todoText: '',
       urgencyText: 1,
-      isDone: 'todo'
+      isDone: 'todo',
+      snackOpen: true,
+      message: '',
     };
   }
 
-  componentWillUnmount() {
-    const { clearStatus } = this.props;
-    clearStatus();
+  public componentWillUnmount() {
+    const { cleanMessage } = this.props;
+    cleanMessage();
   }
 
-  componentWillUpdate() {
-    const { status, onCancel } = this.props;
+  public componentWillUpdate() {
+    const { status, onCancel, cleanMessage } = this.props;
+    let message;
     if (status >= 200 && status < 300) {
       onCancel();
     } else if (status >= 300) {
-      onCancel();
+      message = 'Error while saving todo';
+      this.setState({
+        snackOpen: true,
+        message
+      });
+
+      cleanMessage();
     }
   }
 
-  componentWillMount() {
+  public componentWillMount() {
     const { todo } = this.props;
     if (todo) {
       this.setState({
@@ -64,7 +78,7 @@ class TodoDetails extends Component<MyProps, MyState> {
     }
   }
 
-  onRadioChange(value: string) {
+  private onRadioChange(value: string) {
     this.setState({ isDone: value });
   }
 
@@ -103,12 +117,48 @@ class TodoDetails extends Component<MyProps, MyState> {
     onSave(todo);
   }
 
-  onTodoTextChange(event: React.ChangeEvent<HTMLInputElement>) {
+  private onTodoTextChange(event: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ todoText: event.target.value });
   }
 
-  onTodoUrgencyChange(event: React.ChangeEvent<HTMLInputElement>) {
+  private onTodoUrgencyChange(event: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ urgencyText: parseInt(event.target.value, 10) });
+  }
+
+  private handleSnack() {
+    const { cleanMessage } = this.props;
+    cleanMessage();
+    this.setState({
+      snackOpen: !this.state.snackOpen
+    });
+  }
+
+  private renderSnack(): JSX.Element {
+    return (
+      <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.snackOpen}
+          autoHideDuration={6000}
+          onClose={() => this.handleSnack()}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{this.state.message}</span>}
+          action={
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              onClick={() => this.handleSnack()}
+            >
+              <CloseIcon />
+            </IconButton>
+          } 
+        />
+    );
   }
 
   public render(): JSX.Element {
@@ -156,6 +206,7 @@ class TodoDetails extends Component<MyProps, MyState> {
             color="secondary">Cancel</Button>
           </div>
         </form>
+        {this.renderSnack()}
       </div>
     );
   }
